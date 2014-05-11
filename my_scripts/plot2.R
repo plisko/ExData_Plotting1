@@ -10,9 +10,9 @@ str(pcons_data)
 
 # create timestamp column
 pcons_data$TimeStamp <- as.POSIXct(
-                            apply(pcons_data[,c("Date", "Time")], 1,
-                                  function(x) paste(x, collapse=' ')),
-                            format='%d/%m/%Y %H:%M:%S')
+    apply(pcons_data[,c("Date", "Time")], 1,
+          function(x) paste(x, collapse=' ')),
+    format='%d/%m/%Y %H:%M:%S')
 
 # keep only data for the selected days
 pcons_data <- pcons_data[(pcons_data$TimeStamp >= as.POSIXct("01/02/2007 00:00:00", format="%d/%m/%Y %H:%M:%S"))
@@ -35,19 +35,14 @@ str(pcons_data)
 
 
 ###
-### GENERATING PLOT ###
+### GENERATING PLOT - directly on png ###
 
+png(file="plot2.png", width=480, height=480, units="px", bg="transparent")
 
-# GENERATING PLOT ON SCREEN
-hist(x=pcons_data$Global_active_power,
-     xlab="Global Active Power (kilowatts)",
-     col="red",
-     main="Global Active Power",
-     cex.lab=0.7,
-     cex.main=0.9,
-     cex.axis=0.8)
+plot(x=pcons_data$TimeStamp, y=pcons_data$Global_active_power,
+     xlab="", ylab="Global Active Power (kilowatts)",
+     type="l")
 
-# COPYING TO PNG
-dev.copy(png, file="plot1.png", width=480, height=480, units="px")
 dev.off()
 
+###

@@ -34,14 +34,21 @@ pcons_data$Sub_metering_3 <- as.numeric(pcons_data$Sub_metering_3)
 str(pcons_data)
 
 
-###
-### GENERATING PLOT ###
+# FIRST PLOT
+hist(x=pcons_data$Global_active_power,
+     xlab="Global Active Power (kilowatts)",
+     col="red",
+     main="Global Active Power")
 
-# GENERATING PLOT ON SCREEN
+# SECOND PLOT
+plot(x=pcons_data$TimeStamp, y=pcons_data$Global_active_power,
+     xlab="", ylab="Global Active Power (kilowatts)",
+     type="l")
+
+# THIRD PLOT
 plot(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_1,
      xlab="", ylab="Energy sub metering",
      type="l",
-     cex.axis=0.8, cex.lab=0.8,
      col="black")
 lines(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_2,
       col="red")
@@ -49,9 +56,37 @@ lines(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_3,
       col="blue")
 legend("topright", col=c("black", "red", "blue"),
        legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
-       lwd=1, cex=0.6, y.intersp=0.7)
+       lwd=1)
 
-# COPYING TO PNG
-dev.copy(png, file="plot3.png", width=480, height=480, units="px")
-dev.off()
+# FOURTH PLOT
+par(mfcol=c(2,2))
+
+# upper-left plot
+plot(x=pcons_data$TimeStamp, y=pcons_data$Global_active_power,
+     xlab="", ylab="Global Active Power",
+     type="l")
+
+# lower-left plot
+plot(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_1,
+     xlab="", ylab="Energy sub metering",
+     type="l",
+     col="black")
+lines(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_2,
+      col="red")
+lines(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_3,
+      col="blue")
+legend("topright", col=c("black", "red", "blue"),
+       legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
+       lwd=1, bty="n")
+
+
+# upper-right plot
+plot(x=pcons_data$TimeStamp, y=pcons_data$Voltage,
+     xlab="datetime", ylab="Voltage",
+     type="l", col="black")
+
+# lower-right plot
+plot(x=pcons_data$TimeStamp, y=pcons_data$Global_reactive_power,
+     xlab="datetime", ylab="Global_reactive_power",
+     type="l", col="black")
 

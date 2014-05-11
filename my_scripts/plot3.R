@@ -37,25 +37,21 @@ str(pcons_data)
 ###
 ### GENERATING PLOT ###
 
-# GENERATING PLOT ON SCREEN
-par(mfcol=c(2,2))
+png(file="plot3.png", width=480, height=480, units="px", bg="transparent")
 
-# upper-left plot
-plot(x=pcons_data$TimeStamp, y=pcons_data$Global_active_power, xlab="", ylab="Global Active Power (kilowatts)", type="l")
+plot(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_1,
+     xlab="", ylab="Energy sub metering",
+     type="l",
+     col="black")
+lines(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_2,
+      col="red")
+lines(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_3,
+      col="blue")
+legend("topright", col=c("black", "red", "blue"),
+       legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
+       lwd=1)
 
-# lower-left plot
-plot(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_1, xlab="", ylab="Energy sub metering", type="l", col="black")
-lines(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_2, col="red")
-lines(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_3, col="blue")
-legend("topright", col=c("black", "red", "blue"), legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), lwd=1, cex=0.5, bty="n")
-
-# upper-right plot
-plot(x=pcons_data$TimeStamp, y=pcons_data$Voltage, xlab="datetime", ylab="Voltage", type="l", col="black")
-
-# lower-right plot
-plot(x=pcons_data$TimeStamp, y=pcons_data$Global_reactive_power, xlab="datetime", ylab="Global_reactive_power", type="l", col="black")
-
-# COPYING TO PNG
-dev.copy(png, file="plot4.png", width=480, height=480, units="px")
 dev.off()
+
+###
 
