@@ -77,8 +77,9 @@ lines(x=pcons_data$TimeStamp, y=pcons_data$Sub_metering_3,
       col="blue")
 legend("topright", col=c("black", "red", "blue"),
        legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),
-       lwd=1, bty="n")
-
+       lwd=1, bty="n",
+       cex=0.5)
+# added cex param for screen printing
 
 # upper-right plot
 plot(x=pcons_data$TimeStamp, y=pcons_data$Voltage,
