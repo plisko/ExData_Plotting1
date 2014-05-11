@@ -1,7 +1,7 @@
 ###
 ### DATA LOAD ###
 
-setwd("/Users/paul/Documents/Coursera/04_Exploratory Data Analysis/hw/peer_assessment_01/")
+#setwd("/Users/paul/Documents/Coursera/04_Exploratory Data Analysis/hw/peer_assessment_01/")
 
 pcons_data <- read.table(file="household_power_consumption.txt", header=TRUE, sep=';', stringsAsFactors=FALSE)
 
